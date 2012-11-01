@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" 
+            xmlns:dc="http://purl.org/dc/elements/1.1/" 
+            unique-identifier="bookid" version="3.0" xml:lang="ja">
+  <metadata>
+    <dc:title>${title}</dc:title>
+    <dc:creator>${author}</dc:creator>
+    <dc:identifier id="bookid">urn:uuid:${uuid}</dc:identifier>
+    <dc:language>ja</dc:language>
+  </metadata>
+  <manifest>
+    <item id="ncx" href="toc.ncx" media-type="text/xml"/>
+    <item id="cover" href="cover.html" media-type="application/xhtml+xml"/>
+    <item id="ex" href="ex.html" media-type="application/xhtml+xml"/>
+    %for index, subtitle in enumerate(subtitles):
+    <item id='content${index}' href='content${index}.html' media-type='text/xml'/>
+    %endfor
+    <item id="css" href="stylesheet.css" media-type="text/css"/>
+  </manifest>
+  <spine page-progression-direction="rtl" toc="ncx">
+    <itemref idref="cover"/>
+    <itemref idref="ex"/>
+    %for index, subtitle in enumerate(subtitles):
+    <itemref idref='content${index}'/>"
+    %endfor
+  </spine>
+</package>
