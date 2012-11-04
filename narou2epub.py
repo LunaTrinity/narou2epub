@@ -63,7 +63,7 @@ def create_archive(url):
 
     path = "./[" + author + "] " + title
     
-    print title + "　著:" + author + "　を取得開始します"
+    print title + u"　著:" + author + u"　を取得開始します"
     
     i = 1
     for index, subtitle in enumerate(subtitles):
@@ -76,7 +76,7 @@ def create_archive(url):
             tmpl = Template(filename="./templates/content.html",input_encoding = "utf-8", output_encoding="utf-8",encoding_errors="replace")
             fout.write(tmpl.render(title=title, subtitle=subtitle[0].text, novel=novel))
             fout.close()
-            print "『"+ subtitle[0].text +"』" + u"取得中..."
+            print u"『" + subtitle[0].text + u"』" + u"取得中..."
             i = i+1
         else:
             fout = open(os.path.join('./tmp/', 'OEBPS', 'content'+str(index)+'.html'), 'w')
